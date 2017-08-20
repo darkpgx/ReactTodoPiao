@@ -25,8 +25,14 @@ module.exports = {
     },
     resolve: {
         root:__dirname,
+        //webpack config property which looks into to given directory and automatically add alias for the components
+        //node_modules is a default directory that should be included
+        modulesDirectories: [
+          'node_modules',
+          './app/components'
+        ],
         alias: {
-            applicationStyles: 'app/styles/app.scss',
+            applicationStyles: 'app/styles/app.scss'
         },
         extensions: ['', '.js', '.jsx']
     },
