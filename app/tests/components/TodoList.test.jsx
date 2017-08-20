@@ -1,0 +1,31 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var expect = require('expect');
+var $ = require('jQuery');
+var TestUtils = require('react-addons-test-utils');
+
+var TodoList = require('TodoList');
+var Todo = require('Todo');
+
+describe('TodoList', () => {
+  it('should exist', () => {
+    expect(TodoList).toExist();
+  });
+
+  it('should render one todo component for each todo item', () => {
+    var todos = [{
+      id: 1,
+      text: 'Do something'
+    }, {
+      id: 2,
+      text: 'Check mail'
+    }];
+
+    var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+    //scryRenderedComponentsWithType: how many of a given component is rendered under a separate component
+    //In the following case, returns an array of <Todo/>s inside the rendered todoList
+    var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
+
+    expect(todosComponents.length).toBe(todos.length);
+  });
+});
