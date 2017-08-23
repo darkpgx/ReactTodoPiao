@@ -29,7 +29,8 @@ module.exports = {
         //node_modules is a default directory that should be included
         modulesDirectories: [
           'node_modules',
-          './app/components'
+          './app/components',
+          './app/api'
         ],
         alias: {
             applicationStyles: 'app/styles/app.scss'
