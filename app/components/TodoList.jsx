@@ -1,7 +1,10 @@
 var React = require('react');
-var Todo = require('Todo');
+//React-redux: connect is companion with provider from react-redux
+var {connect} = require('react-redux');
+import Todo from 'Todo';
 
-var TodoList = React.createClass({
+//For test purpose export
+export var TodoList = React.createClass({
   render: function() {
     var {todos} = this.props;
     var renderTodos = () => {
@@ -13,7 +16,7 @@ var TodoList = React.createClass({
       return todos.map((todo) => {
         return (
           //use the ...todo spread to pass down all attribute to the Todo component
-          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+          <Todo key={todo.id} {...todo}/>
         );
       });
     };
@@ -26,4 +29,13 @@ var TodoList = React.createClass({
   }
 });
 
-module.exports = TodoList;
+//React-redux: pass in a function that takes the state from store and return only state item that matters; in this case todos
+//Now todos is set on the props of the connecting component
+//export default instead of module.exports
+export default connect(
+  (state) => {
+    return {
+      todos: state.todos
+    };
+  }
+)(TodoList);

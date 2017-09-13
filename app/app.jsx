@@ -1,5 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+//React-redux: provider lets you provide store to your children call inside React.render
+var {Provider} = require('react-redux');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 var TodoApp = require('TodoApp');
@@ -25,6 +27,9 @@ $(document).foundation();
 require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
-  <TodoApp/>,
+  //React-redux: provider pass in store
+  <Provider store={store}>
+    <TodoApp/>
+  </Provider>,
   document.getElementById('app')
 );
