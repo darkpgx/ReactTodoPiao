@@ -4,6 +4,18 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 var TodoApp = require('TodoApp');
 
+//Adding redux components
+var actions = require('actions');
+var store = require('configureStore').configure();
+
+store.subscribe(() => {
+  console.log('New state', store.getState());
+});
+
+store.dispatch(actions.addTodo('Clean the yard'));
+store.dispatch(actions.setSearchText('yard'));
+store.dispatch(actions.toggleShowCompleted());
+
 //Load foundation: use loaders 'style!css!' to load foundation.min.css
 //No longer needed as we load from foundation scss
 //require('style!css!foundation-sites/dist/foundation.min.css');
